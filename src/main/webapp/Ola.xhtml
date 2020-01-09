@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<f:metadata>
+	<f:viewParam name="id" value="#{cadastroLancamentoBean.lancamento}"/>
+		<f:viewAction action="#{cadastroLancamentoBean.prepararCadastro}" />
+	</f:metadata>
+<h:head>
+	<title>Olá JSF</title>
+</h:head>
+<h:body>
+
+	<h:form id="frm">
+		<h:inputText id="nome" value="#{ola.nome}" />
+		<f:ajax render="ola contador" event="keyup" listener="#{ola.transformar}">
+		</f:ajax>
+		<br />
+		
+		<h:outputText value="Olá #{ola.nome}" id="ola" />
+		<br />
+		
+		<h:outputText id="contador"
+			value="#{ola.quantidadeCaracteres} caracteres digitados" />
+			<f:ajax event="keyup" render="ola contador" listener="#{ola.transformar}"></f:ajax>
+		<br />
+		<h:commandButton value="Transformar" action="#{ola.transformar}">
+			<f:ajax render="ola contador" execute="nome" />
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		</h:commandButton>
+		
+		<p:outputLabel value="Pessoa" />
+		<br/>
+	
+		<p:inputText  value="#{ola.busca}">
+		
+		<f:ajax render="busca pessoas" event="change" listener="#{ola.filtraPessoas}" ></f:ajax>
+		</p:inputText>
+		
+		<br/>
+		<br/>
+		<h:outputText value="busca #{ola.busca}" id="busca" />
+		<br/>
+		<br/>
+		
+		<p:selectOneMenu value="#{ola.pessoa}" id="pessoas"
+			label="Pessoa">
+			<f:selectItem itemLabel="Selecione" noSelectionOption="true" />
+			<f:selectItems value="#{ola.todasPessoas}"
+				var="pessoa" itemValue="#{pessoa}" itemLabel="#{pessoa.nome}" />
+		</p:selectOneMenu>
+	</h:form>
+
+</h:body>
+</html>

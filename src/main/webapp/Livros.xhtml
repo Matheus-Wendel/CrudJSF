@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+
+
+	<title>Livros favoritos</title>
+</h:head>
+<h:body>
+<h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
+<h:outputScript library="js" name="script.js"></h:outputScript>
+<h:form>
+
+<h:panelGrid>
+<h:outputLabel value="Titulo:"></h:outputLabel>
+<h:inputText value = "#{livrosBean.novoLivro.titulo}"></h:inputText>
+
+<h:outputLabel value="Autor: :"></h:outputLabel>
+<h:inputText value = "#{livrosBean.novoLivro.autor}"></h:inputText>
+
+<h:outputLabel></h:outputLabel>
+<h:commandButton value="Adicionar livro" action="#{livrosBean.adicionar}"></h:commandButton>
+</h:panelGrid>
+
+
+
+
+</h:form>
+	<h:form>
+		<h:dataTable value="#{livrosBean.livros}" var="livro" border="1"
+			cellspacing="0" cellpadding="2">
+			<f:facet name="header">
+		Relacao de livros
+		</f:facet>
+			<h:column>
+				<f:facet name="header">Título</f:facet>
+				<h:outputText value="#{livro.titulo}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Autor</f:facet>
+					<h:outputText value ="#{livro.autor}"/>
+			</h:column>
+
+
+		</h:dataTable>
+
+
+
+	</h:form>
+
+</h:body>
+</html>
